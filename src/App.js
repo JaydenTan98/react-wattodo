@@ -53,7 +53,7 @@ class App extends Component {
       <div className="container">
         <div className="row">
           <div className="col-10 mx-auto col-md-9 mt-5">
-            <h3 className="text-uppercase text-center">Tasks</h3>
+            <h3 className="text-uppercase text-center">Add Tasks</h3>
             <TodoInput item={this.state.item} handleChange={this.handleChange} handleSubmit={this.handleSubmit} editItem={this.state.editItem}/>
             <TodoList items={this.state.items} clearList={this.state.clearList} handleDelete={this.handleDelete} handleEdit={this.handleEdit}/>
           </div>
