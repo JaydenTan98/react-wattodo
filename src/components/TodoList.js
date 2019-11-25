@@ -15,6 +15,6 @@ export default class TodoList extends Component {
                     Delete All
                 </button>
             </ul>
-        )
+        );
     }
 }

@@ -36,16 +36,28 @@ class App extends Component {
     });
   }
 
-  clearList = ()=>{
-    console.log("clear list")
+  clearList = ()=>{                   //Clear the list of tasks
+    this.setState({
+      items: []
+    });
   }
 
   handleDelete = (id)=>{
-    console.log("handle edit $(id)")
+    const deletedItem = this.state.items.filter(item=>item.id !== id);
+    this.setState({
+      items: deletedItem
+    })
   }
 
   handleEdit = (id)=>{
-    console.log("edit edit $(id)")
+    const filteredItems = this.state.items.filter(item=>item.id !== id);
+    const selectedItem = this.state.items.find(item=> item.id === id);         //Look for the task to edit using id match
+    this.setState({
+      items: filteredItems,
+      item: selectedItem.title,
+      id: id,
+      editItem: true
+    })
   }
 
   render() {
@@ -53,7 +65,7 @@ class App extends Component {
       <div className="container">
         <div className="row">
           <div className="col-10 mx-auto col-md-9 mt-5">
-            <h3 className="text-uppercase text-center">Add Tasks</h3>
+            <h3 className="text-uppercase text-center">Add Task</h3>
             <TodoInput item={this.state.item} handleChange={this.handleChange} handleSubmit={this.handleSubmit} editItem={this.state.editItem}/>
             <TodoList items={this.state.items} clearList={this.state.clearList} handleDelete={this.handleDelete} handleEdit={this.handleEdit}/>
           </div>
