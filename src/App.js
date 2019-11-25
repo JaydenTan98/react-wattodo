@@ -4,15 +4,46 @@ import uuid from 'uuid';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
-/// demonstrating the setup of vs-code and github
+// demonstrating the setup of vs-code and github
 
 class App extends Component {
+  state={
+    items: [{id:1, title:"Wake Up"}, {id:1, title:"Make breakfast"}],
+    id: uuid(),
+    item: '',
+    editItem: false
+  };
+
+  handleSubmit = (e)=>{
+    console.log("handle submit")
+  }
+
+  handleChange = (e)=>{
+    console.log("handle change")
+  }
+
+  clearList = ()=>{
+    console.log("clear list")
+  }
+
+  handleDelete = (id)=>{
+    console.log("handle edit $(id)")
+  }
+
+  handleEdit = (id)=>{
+    console.log("edit edit $(id)")
+  }
+
   render() {
     return (
       <div className="container">
-        <h1>Hello from App.Js</h1>
-        <TodoInput />
-        <TodoList />
+        <div className="row">
+          <div className="col-10 mx-auto col-md-9 mt-5">
+            <h3 className="text-capitalize text-center">toDo Input</h3>
+            <TodoInput item={this.state.item} handleChange={this.handleChange} handleSubmit={this.handleSubmit} editItem={this.state.editItem/>
+            <TodoList items={this.state.items} clearList={this.state.clearList} handleDelete={this.handleDelete} handleEdit={this.handleEdit}/>
+          </div>
+        </div>
       </div>
     )
   }
