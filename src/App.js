@@ -8,18 +8,32 @@ import TodoList from './components/TodoList';
 
 class App extends Component {
   state={
-    items: [{id:1, title:"Wake Up"}, {id:1, title:"Make breakfast"}],
-    id: uuid(),
+    items: [],                        //Tasks
+    id: uuid(),                       //Generate random unique ID
     item: "",
     editItem: false
   };
 
   handleSubmit = (e)=>{
-    console.log("handle submit")
-  }
+    e.preventDefault();
+    const newItem = {                 //Obtain the value from the object
+      id: this.state.id,            
+      title: this.state.item
+    }
+    const updatedItems = [...this.state.items, newItem]    //Update the new item
 
-  handleChange = (e)=>{
-    console.log("handle change")
+    this.setState({
+      items: updatedItems, 
+      item: "",                         //Always empty string when starting for the new
+      id: uuid(),
+      editItem: false                 //Go back to false from true 
+    });
+  };
+
+  handleChange = (e)=>{               //Handle the changes on the adding task section
+    this.setState({
+      item: e.target.value
+    });
   }
 
   clearList = ()=>{
